@@ -1,5 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class MainFrame extends JFrame {
     private Image imageIcon = new ImageIcon("image\\cat.jpg").getImage();
@@ -40,7 +44,7 @@ public class MainFrame extends JFrame {
         create();
 
         //game board
-        gameBoard = new JPanel(new GridBagLayout());
+        gameBoard = new JPanel(null);
         gameBoard.setBounds(indent, indent, (width*3/4) - indent*2, height - indent*2 - 30);
         gameBoard.setBackground(new Color(100,0,0));
         add(gameBoard);
