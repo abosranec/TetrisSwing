@@ -1,11 +1,12 @@
 import javax.swing.*;
+import javax.swing.plaf.BorderUIResource;
 import java.awt.*;
 
 public class MainFrame extends JFrame {
     private Image imageIcon = new ImageIcon("image\\cat.jpg").getImage();
     private JPanel gameBoard;
     private JPanel panelGameSetting;
-    private JTextField score;
+    private JLabel score;
     private JPanel panelNextFigure;
     private JPanel panelBonus;
     private JPanel panelMenu;
@@ -40,7 +41,7 @@ public class MainFrame extends JFrame {
         create();
 
         //game board
-        gameBoard = new JPanel(null);
+        gameBoard = new JPanel(new GridBagLayout());
         gameBoard.setBounds(indent, indent, (width*3/4) - indent*2, height - indent*2 - 30);
         gameBoard.setBackground(new Color(100,0,0));
         add(gameBoard);
@@ -52,29 +53,30 @@ public class MainFrame extends JFrame {
         add(panelGameSetting);
 
         //settings.score
-        score = new JTextField("10000");
+        score = new JLabel("10000");
+        //score.setBackground(new Color(80,80,80));
         score.setFont(new Font("Default", 1, 24));
         panelGameSetting.add(score, new GridBagConstraints(
                 0, 0, 1, 1, 0, 1,
                 GridBagConstraints.CENTER,
                 GridBagConstraints.HORIZONTAL,
-                new Insets(5, 5, 5, 5), 0, 0 ));
+                new Insets(-10, 0, -10, 0), 0, 0 ));
 
         //settings.nextFigure
-        panelNextFigure = new JPanel();
+        panelNextFigure = new JPanel(new GridBagLayout());
         panelGameSetting.add(panelNextFigure, new GridBagConstraints(
                 0, 1, 1, 3, 0, 3,
                 GridBagConstraints.CENTER,
                 GridBagConstraints.VERTICAL,
-                new Insets(5, 5, 5, 5), 20, 30 ));
+                new Insets(0, 5, 5, 5), 20, 0 ));
 
         //settingsBonus
-        panelBonus = new JPanel();
+        panelBonus = new JPanel(new GridBagLayout());
         panelGameSetting.add(panelBonus, new GridBagConstraints(
                 0, 4, 1, 5, 0, 5,
                 GridBagConstraints.CENTER,
                 GridBagConstraints.VERTICAL,
-                new Insets(5, 5, 5, 5), 20, 30 ));
+                new Insets(5, 5, 5, 5), 20, 0 ));
 
         //settings.Menu
         panelMenu = new JPanel(new GridBagLayout());
@@ -82,24 +84,24 @@ public class MainFrame extends JFrame {
                 0, 9, 1, 3, 0, 3,
                 GridBagConstraints.CENTER,
                 GridBagConstraints.VERTICAL,
-                new Insets(5, 5, 5, 5), 20, 0 ));
+                new Insets(5, 5, 10, 5), 20, 0 ));
 
 
         panelMenu.add(new Button("старт/пауза"), new GridBagConstraints(
-                0, 0, 1, 1, 0, 0,
+                0, 0, 1, 1, 0, 1,
                 GridBagConstraints.CENTER,
-                GridBagConstraints.VERTICAL,
-                new Insets(0,0,0,0), 0, 0 ));
+                GridBagConstraints.HORIZONTAL,
+                new Insets(-15,0,-15,0), 0, 0 ));
         panelMenu.add(new Button("сначала"), new GridBagConstraints(
-                0, 1, 1, 1, 0, 0,
+                0, 1, 1, 1, 0, 1,
                 GridBagConstraints.CENTER,
-                GridBagConstraints.VERTICAL,
-                new Insets(0,0,0,0), 0, 0 ));
+                GridBagConstraints.HORIZONTAL,
+                new Insets(-15,0,-15,0), 0, 0 ));
         panelMenu.add(new Button("выход"), new GridBagConstraints(
-                0, 2, 1, 1, 0, 0,
+                0, 2, 1, 1, 0, 1,
                 GridBagConstraints.CENTER,
-                GridBagConstraints.VERTICAL,
-                new Insets(0,0,0,0), 0, 0 ));
+                GridBagConstraints.HORIZONTAL,
+                new Insets(-15,0,-15,0), 0, 0 ));
 
 
 
