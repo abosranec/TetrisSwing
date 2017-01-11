@@ -1,5 +1,4 @@
 import javax.swing.*;
-import javax.swing.plaf.BorderUIResource;
 import java.awt.*;
 
 public class MainFrame extends JFrame {
@@ -53,9 +52,13 @@ public class MainFrame extends JFrame {
         add(panelGameSetting);
 
         //settings.score
-        score = new JLabel("10000");
-        //score.setBackground(new Color(80,80,80));
-        score.setFont(new Font("Default", 1, 24));
+        score = new JLabel("10000", JLabel.CENTER);
+        score.setOpaque(true);
+        score.setBackground(new Color(100,150,200));
+        score.setBorder(BorderFactory.createRaisedBevelBorder());
+        Font f = new Font(Font.SERIF, Font.PLAIN, 24);
+        score.setFont(f);
+        score.setForeground(new Color(255,255,255));
         panelGameSetting.add(score, new GridBagConstraints(
                 0, 0, 1, 1, 0, 1,
                 GridBagConstraints.CENTER,
@@ -64,6 +67,7 @@ public class MainFrame extends JFrame {
 
         //settings.nextFigure
         panelNextFigure = new JPanel(new GridBagLayout());
+        panelNextFigure.setBorder(BorderFactory.createRaisedBevelBorder());
         panelGameSetting.add(panelNextFigure, new GridBagConstraints(
                 0, 1, 1, 3, 0, 3,
                 GridBagConstraints.CENTER,
@@ -72,6 +76,7 @@ public class MainFrame extends JFrame {
 
         //settingsBonus
         panelBonus = new JPanel(new GridBagLayout());
+        panelBonus.setBorder(BorderFactory.createRaisedBevelBorder());
         panelGameSetting.add(panelBonus, new GridBagConstraints(
                 0, 4, 1, 5, 0, 5,
                 GridBagConstraints.CENTER,
@@ -80,6 +85,7 @@ public class MainFrame extends JFrame {
 
         //settings.Menu
         panelMenu = new JPanel(new GridBagLayout());
+        panelMenu.setBorder(BorderFactory.createRaisedBevelBorder());
         panelGameSetting.add(panelMenu, new GridBagConstraints(
                 0, 9, 1, 3, 0, 3,
                 GridBagConstraints.CENTER,
