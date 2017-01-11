@@ -1,20 +1,18 @@
+import windowSetting.*;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 public class MainFrame extends JFrame {
     private Image imageIcon = new ImageIcon("image\\cat.jpg").getImage();
-    private JPanel gameBoard;
+    private GameBoard gameBoard;
     private JPanel panelGameSetting;
-    private JLabel score;
-    private JPanel panelNextFigure;
-    private JPanel panelBonus;
-    private JPanel panelMenu;
-    private int width = 550;
-    private int height = 600;
+    private Score score;
+    private PanelNextFigure panelNextFigure;
+    private PanelBonus panelBonus;
+    private PanelMenu panelMenu;
+    private int width = 600;
+    private int height = 650;
     private int indent = 10;
 
     private void create(){
@@ -44,9 +42,7 @@ public class MainFrame extends JFrame {
         create();
 
         //game board
-        gameBoard = new JPanel(null);
-        gameBoard.setBounds(indent, indent, (width*3/4) - indent*2, height - indent*2 - 30);
-        gameBoard.setBackground(new Color(100,0,0));
+        gameBoard = new GameBoard(indent, indent, (width*3/4) - indent*2, height - indent*2 - 30, indent);
         add(gameBoard);
 
         //settings
@@ -56,22 +52,15 @@ public class MainFrame extends JFrame {
         add(panelGameSetting);
 
         //settings.score
-        score = new JLabel("10000", JLabel.CENTER);
-        score.setOpaque(true);
-        score.setBackground(new Color(100,150,200));
-        score.setBorder(BorderFactory.createRaisedBevelBorder());
-        Font f = new Font(Font.SERIF, Font.PLAIN, 24);
-        score.setFont(f);
-        score.setForeground(new Color(255,255,255));
+        score = new Score();
         panelGameSetting.add(score, new GridBagConstraints(
                 0, 0, 1, 1, 0, 1,
                 GridBagConstraints.CENTER,
                 GridBagConstraints.HORIZONTAL,
-                new Insets(-10, 0, -10, 0), 0, 0 ));
+                new Insets(-10, 5, -10, 5), 0, 0 ));
 
         //settings.nextFigure
-        panelNextFigure = new JPanel(new GridBagLayout());
-        panelNextFigure.setBorder(BorderFactory.createRaisedBevelBorder());
+        panelNextFigure = new PanelNextFigure();
         panelGameSetting.add(panelNextFigure, new GridBagConstraints(
                 0, 1, 1, 3, 0, 3,
                 GridBagConstraints.CENTER,
@@ -79,8 +68,7 @@ public class MainFrame extends JFrame {
                 new Insets(0, 5, 5, 5), 20, 0 ));
 
         //settingsBonus
-        panelBonus = new JPanel(new GridBagLayout());
-        panelBonus.setBorder(BorderFactory.createRaisedBevelBorder());
+        panelBonus = new PanelBonus();
         panelGameSetting.add(panelBonus, new GridBagConstraints(
                 0, 4, 1, 5, 0, 5,
                 GridBagConstraints.CENTER,
@@ -88,31 +76,12 @@ public class MainFrame extends JFrame {
                 new Insets(5, 5, 5, 5), 20, 0 ));
 
         //settings.Menu
-        panelMenu = new JPanel(new GridBagLayout());
-        panelMenu.setBorder(BorderFactory.createRaisedBevelBorder());
+        panelMenu = new PanelMenu();
         panelGameSetting.add(panelMenu, new GridBagConstraints(
                 0, 9, 1, 3, 0, 3,
                 GridBagConstraints.CENTER,
                 GridBagConstraints.VERTICAL,
                 new Insets(5, 5, 10, 5), 20, 0 ));
-
-
-        panelMenu.add(new Button("старт/пауза"), new GridBagConstraints(
-                0, 0, 1, 1, 0, 1,
-                GridBagConstraints.CENTER,
-                GridBagConstraints.HORIZONTAL,
-                new Insets(-15,0,-15,0), 0, 0 ));
-        panelMenu.add(new Button("сначала"), new GridBagConstraints(
-                0, 1, 1, 1, 0, 1,
-                GridBagConstraints.CENTER,
-                GridBagConstraints.HORIZONTAL,
-                new Insets(-15,0,-15,0), 0, 0 ));
-        panelMenu.add(new Button("выход"), new GridBagConstraints(
-                0, 2, 1, 1, 0, 1,
-                GridBagConstraints.CENTER,
-                GridBagConstraints.HORIZONTAL,
-                new Insets(-15,0,-15,0), 0, 0 ));
-
 
 
 
