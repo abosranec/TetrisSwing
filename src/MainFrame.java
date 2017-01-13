@@ -16,15 +16,9 @@ public class MainFrame extends JFrame {
     private int indent = 10;
 
     private void create(){
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                setTitle("Teeeetris");
-                setSize(width, height);
-                setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            }
-        });
-
+        setTitle("Teeeetris");
+        setSize(width, height);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setCenterPosition();
         setResizable(false);
         setIconImage(imageIcon);        //need icon
@@ -83,10 +77,28 @@ public class MainFrame extends JFrame {
                 GridBagConstraints.VERTICAL,
                 new Insets(5, 5, 10, 5), 20, 0 ));
 
-
-
         //finish to create window
         setVisible(true);
+    }
+
+    public GameBoard getGameBoard() {
+        return gameBoard;
+    }
+
+    public Score getScore() {
+        return score;
+    }
+
+    public PanelNextFigure getPanelNextFigure() {
+        return panelNextFigure;
+    }
+
+    public PanelBonus getPanelBonus() {
+        return panelBonus;
+    }
+
+    public PanelMenu getPanelMenu() {
+        return panelMenu;
     }
 }
 

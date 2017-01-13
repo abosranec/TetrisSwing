@@ -1,10 +1,29 @@
+import java.util.Date;
 
 public class Application {
 
     public static void main(String[] args) {
-        new MainFrame();
+        //создаем окно
+        MainFrame mainFrame = new MainFrame();
+
+        //запускаем игрушку
+        new RunGame(mainFrame);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //
 //        JLabel l = new JLabel(new ImageIcon("image\\cat.jpg"), JLabel.CENTER);
