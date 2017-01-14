@@ -7,7 +7,8 @@ public class Application {
         MainFrame mainFrame = new MainFrame();
 
         //запускаем игрушку
-        new RunGame(mainFrame);
+        Thread thread = new Thread(new RunGame(mainFrame));
+        thread.start();
     }
 }
 

@@ -11,8 +11,8 @@ public class MainFrame extends JFrame {
     private PanelNextFigure panelNextFigure;
     private PanelBonus panelBonus;
     private PanelMenu panelMenu;
-    private int width = 600;
-    private int height = 650;
+    private int width = 576;
+    private int height = 648;
     private int indent = 10;
 
     private void create(){

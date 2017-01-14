@@ -6,7 +6,8 @@ public class GameBoard extends JPanel {
     private int y;
     private int width;
     private int height;
-    private int indent;
+    private int indent; //between cell
+    private Point[][] gridLayout= new Point[15][20];
     public GameBoard(int x, int y, int width, int height, int indent) {
         super(null);
         this.x = x;
