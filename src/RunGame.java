@@ -16,7 +16,7 @@ public class RunGame implements Runnable {
         while(i < 20){
             while(Math.abs(System.currentTimeMillis() - currentTime) > gameSpeed){
                 currentTime = System.currentTimeMillis();
-                System.out.println("opa");
+                //System.out.println("opa");
                 i++;
             }
         }

@@ -11,8 +11,8 @@ public class MainFrame extends JFrame {
     private PanelNextFigure panelNextFigure;
     private PanelBonus panelBonus;
     private PanelMenu panelMenu;
-    private int width = 576;
-    private int height = 648;
+    private int width = 484;
+    private int height = 652;
     private int indent = 10;
 
     private void create(){
@@ -36,12 +36,12 @@ public class MainFrame extends JFrame {
         create();
 
         //game board
-        gameBoard = new GameBoard(indent, indent, (width*3/4) - indent*2, height - indent*2 - 30, indent);
+        gameBoard = new GameBoard(indent, indent, (width*2/3) - indent*2, height - indent*2 - 30);
         add(gameBoard);
 
         //settings
         panelGameSetting = new JPanel(new GridBagLayout());
-        panelGameSetting.setBounds((width*3/4), indent, (width/4) - indent, height - indent*2 - 30);
+        panelGameSetting.setBounds((width*2/3), indent, (width/3) - indent, height - indent*2 - 30);
         panelGameSetting.setBackground(new Color(100,0,100));
         add(panelGameSetting);
 
