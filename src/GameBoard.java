@@ -24,9 +24,9 @@ public class GameBoard extends JPanel {
                         (i+1)*indentCell + i * widthCell,
                         (j+1)*indentCell + j * heightCell,
                         widthCell, heightCell);
-//                gridLayout[i][j].setBackground(new Color(100,100,100));
-//                gridLayout[i][j].setOpaque(true);
-//                add(gridLayout[i][j]);
+                gridLayout[i][j].setBackground(new Color(i*25,j*12,i*j+50));
+                gridLayout[i][j].setOpaque(true);
+                add(gridLayout[i][j]);
             }
         }
     }
