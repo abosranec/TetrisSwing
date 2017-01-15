@@ -4,7 +4,7 @@ import mainGame.OFigure;
 public class RunGame implements Runnable {
     private MainFrame mainFrame;
     private GameBoard gameBoard;
-    private long gameSpeed = 500;
+    private long gameSpeed = 1000;
     public RunGame(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         gameBoard = mainFrame.getGameBoard();
@@ -23,7 +23,8 @@ public class RunGame implements Runnable {
                 currentTime = System.currentTimeMillis();
 
                 //move figure for board
-                //System.out.println("opa");
+                System.out.println("opa");
+                gameBoard.moveCurrentFigure();
             }
         }
     }

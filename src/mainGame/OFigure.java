@@ -6,8 +6,6 @@ import java.util.Random;
 //   ##
 //   ##
 public class OFigure implements Figure {
-    private int maxWidth = 2;
-    private int maxHeight = 2;
     private int workWidth = 2;
     private int workHeight = 2;
     private Cell[][] cells;
@@ -31,7 +29,7 @@ public class OFigure implements Figure {
 
     @Override
     public void initFigure() {
-        cells = new Cell[maxWidth][maxHeight];
+        cells = new Cell[workWidth][workHeight];
         //*#
         //##
         cells[0][0] = new Cell(true, color);
