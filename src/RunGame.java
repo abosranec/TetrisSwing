@@ -1,3 +1,5 @@
+import mainGame.Figure;
+import mainGame.OFigure;
 
 public class RunGame implements Runnable {
     private MainFrame mainFrame;
@@ -10,14 +12,18 @@ public class RunGame implements Runnable {
 
     @Override
     public void run() {
-        int i = 0;
         long currentTime = System.currentTimeMillis();
-        System.out.println(currentTime);
-        while(i < 20){
+
+        //select random figure
+        Figure currentFigure = new OFigure();
+        gameBoard.newCurrentFigure(currentFigure);
+        while(true){
             while(Math.abs(System.currentTimeMillis() - currentTime) > gameSpeed){
+                // for game speed
                 currentTime = System.currentTimeMillis();
+
+                //move figure for board
                 //System.out.println("opa");
-                i++;
             }
         }
     }

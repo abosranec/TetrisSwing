@@ -11,4 +11,9 @@ public class Cell extends JLabel {
         setBorder(BorderFactory.createRaisedBevelBorder());
         setBounds(x, y, width, height);
     }
+
+    public Cell(boolean isUse, Color color) {
+        setOpaque(isUse);
+        setBackground(color);
+    }
 }

@@ -37,12 +37,14 @@ public class MainFrame extends JFrame {
 
         //game board
         gameBoard = new GameBoard(indent, indent, (width*2/3) - indent*2, height - indent*2 - 30);
+        gameBoard.setBorder(BorderFactory.createRaisedBevelBorder());
         add(gameBoard);
 
         //settings
         panelGameSetting = new JPanel(new GridBagLayout());
-        panelGameSetting.setBounds((width*2/3), indent, (width/3) - indent, height - indent*2 - 30);
+        panelGameSetting.setBounds((width*2/3), indent, (width/3) - indent - 5, height - indent*2 - 30);
         panelGameSetting.setBackground(new Color(100,0,100));
+        panelGameSetting.setBorder(BorderFactory.createRaisedBevelBorder());
         add(panelGameSetting);
 
         //settings.score
