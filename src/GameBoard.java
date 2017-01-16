@@ -26,31 +26,27 @@ public class GameBoard extends JPanel {
                         (i+1)*indentCell + i * widthCell,
                         (j+1)*indentCell + j * heightCell,
                         widthCell, heightCell, i, j);
-//                gridLayout[i][j].setBackground(new Color(i*25,j*12,i*j+50));
                 gridLayout[i][j].setOpaque(true);
-//                add(gridLayout[i][j]);
+                gridLayout[i][j].setVisible(false);
+                add(gridLayout[i][j]);
             }
         }
     }
 
-    public Cell[][] getGridLayout() {
-        return gridLayout;
-    }
-
     public void newCurrentFigure(Figure newFigure) {
         this.currentFigure = newFigure;
-        drawCurrentFigure(newFigure);
+        drawCurrentFigure();
     }
 
-    public void drawCurrentFigure(Figure currentFigure) {
+    public void drawCurrentFigure() {
         for (int i = 0; i < currentFigure.getCells().length; i++) {
             for (int j = 0; j < (currentFigure.getCells())[i].length; j++) {
-                if (currentFigure.getCells()[i][j].isOpaque()) {
+                if (currentFigure.getCells()[i][j].isVisible()) {
                     int x = (gridLayout.length - currentFigure.getWorkWidth()) / 2;
                     currentFigure.getCells()[i][j].setxBoard(x+j);
                     currentFigure.getCells()[i][j].setyBoard(i);
                     gridLayout[x + j][i].setBackground((currentFigure.getCells()[i][j]).getBackground());
-                    add(gridLayout[x + j][i]);
+                    gridLayout[x + j][i].setVisible(true);
                     gridLayout[x + j][i].repaint();
                 }
             }
@@ -61,15 +57,14 @@ public class GameBoard extends JPanel {
         //delete old figure
         for (int i = 0; i < currentFigure.getCells().length; i++) {
             for (int j = 0; j < (currentFigure.getCells())[i].length; j++) {
-                Cell cell = currentFigure.getCells()[i][j];
-                if (cell.isOpaque()) {
+                if (currentFigure.getCells()[i][j].isVisible()) {
                     int xBoard = currentFigure.getCells()[i][j].getxBoard();
                     int yBoard = currentFigure.getCells()[i][j].getyBoard();
 
-                    remove(gridLayout[xBoard][yBoard]);
-                    repaint(gridLayout[xBoard][yBoard].getBounds());
+                    gridLayout[xBoard][yBoard].setVisible(false);
+                    gridLayout[xBoard][yBoard].repaint();
 
-                    cell.setyBoard(yBoard + 1);
+                    currentFigure.getCells()[i][j].setyBoard(yBoard + 1);
                 }
             }
         }
@@ -77,12 +72,12 @@ public class GameBoard extends JPanel {
         //move new figure
         for (int i = 0; i < currentFigure.getCells().length; i++) {
             for (int j = 0; j < (currentFigure.getCells())[i].length; j++) {
-                if (currentFigure.getCells()[i][j].isOpaque()) {
+                if (currentFigure.getCells()[i][j].isVisible()) {
                     int xBoard = currentFigure.getCells()[i][j].getxBoard();
                     int yBoard = currentFigure.getCells()[i][j].getyBoard();
 
                     gridLayout[xBoard][yBoard].setBackground((currentFigure.getCells()[i][j]).getBackground());
-                    add(gridLayout[xBoard][yBoard]);
+                    gridLayout[xBoard][yBoard].setVisible(true);
                     gridLayout[xBoard][yBoard].repaint();
                 }
             }

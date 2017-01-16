@@ -17,7 +17,7 @@ public class Cell extends JLabel {
     }
 
     public Cell(boolean isUse, Color color) {
-        setOpaque(isUse);
+        setVisible(isUse);
         setBackground(color);
     }
 
