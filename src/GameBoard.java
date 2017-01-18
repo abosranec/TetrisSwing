@@ -63,7 +63,7 @@ public class GameBoard extends JPanel {
         //move new figure
         switch (type){
             case MOVE: currentFigure.move(); break;
-            case NEXT: currentFigure.next(); break;
+            case NEXT: currentFigure.next(gridLayout); break;
             case RIGHT: currentFigure.rightAndLeft(gridLayout, RIGHT); break;
             case LEFT: currentFigure.rightAndLeft(gridLayout, LEFT); break;
         }

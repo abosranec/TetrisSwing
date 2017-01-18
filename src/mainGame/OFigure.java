@@ -46,45 +46,43 @@ public class OFigure implements Figure {
     //RIGHT and LEFT
     @Override
     public void rightAndLeft(Cell[][] cellsBoard, int type) {
-        Cell[][] oldCells = new Cell[workWidth][workHeight];
+        Cell[][] oldCells = new Cell[workWidth][workHeight]; //copy figure
         boolean good = false;
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
                 oldCells[i][j] = new Cell(cells[i][j]);
                 if (cells[i][j].isVisible()) {
+                    //check figure to display
                     if ((cells[i][j].getxBoard() + type < cellsBoard.length)
                             && (cells[i][j].getxBoard() + type > -1)
-                            && !cellsBoard[cells[i][j].getxBoard() + type][j].isVisible())
+                            && !cellsBoard[cells[i][j].getxBoard() + type][cells[i][j].getyBoard()].isVisible())
                         cells[i][j].setxBoard(cells[i][j].getxBoard() + type);
-                    else {
+                    else
                         good = true;
-                        continue;
-                    }
                 }
             }
         }
-
+        //if new figure is impossible, use copy figure
         if (good){
             for (int i = 0; i < cells.length; i++) {
                 for (int j = 0; j < cells[i].length; j++) {
                     cells[i][j] = oldCells[i][j];
                 }
             }
-
         }
     }
 
-//    @Override
-//    public void left(Cell[][] cellsBoard) {
-//        for (int i = 0; i < cells.length; i++) {
-//            for (int j = 0; j < cells[i].length; j++) {
-//                cells[i][j].setxBoard(cells[i][j].getxBoard() - 1);
-//            }
-//        }
-//    }
-
     @Override
-    public void next() {
+    public void next(Cell[][] cellsBoard) {
+        Cell[][] oldCells = new Cell[workWidth][workHeight]; //copy figure
+        boolean good = false;
+        //initialize copy figure
+        for (int i = 0; i < cells.length; i++) {
+            for (int j = 0; j < cells[i].length; j++) {
+                oldCells[i][j] = new Cell(cells[i][j]);
+            }
+        }
+        //get new figure
         for (int i=0; i<workWidth/2; i++)
         {
             for (int j=i; j<workHeight-1-i; j++)
@@ -99,6 +97,29 @@ public class OFigure implements Figure {
                 cells[workWidth-1-i][workWidth-1-j].setyBoard(cells[workWidth-1-j][i].getyBoard());
                 cells[workWidth-1-j][i].setxBoard(x);
                 cells[workWidth-1-j][i].setyBoard(y);
+            }
+        }
+        //check figure to display
+        T: for (int i = 0; i < cells.length; i++) {
+            for (int j = 0; j < cells[i].length; j++) {
+                if (cells[i][j].isVisible()) {
+                    if ((cells[i][j].getxBoard() > cellsBoard.length - 1)
+                            || (cells[i][j].getxBoard() < 0)
+                            || (cells[i][j].getyBoard() < cellsBoard[i].length)
+                            || (cells[i][j].getyBoard() < 0)
+                            || cellsBoard[cells[i][j].getxBoard()][cells[i][j].getyBoard()].isVisible()) {
+                        good = true;
+                        break T;
+                    }
+                }
+            }
+        }
+        //if new figure is impossible, use copy figure
+        if (good){
+            for (int i = 0; i < cells.length; i++) {
+                for (int j = 0; j < cells[i].length; j++) {
+                    cells[i][j] = oldCells[i][j];
+                }
             }
         }
     }

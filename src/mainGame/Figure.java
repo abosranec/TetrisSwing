@@ -7,7 +7,7 @@ public interface Figure {
     void initFigure(int widthBoard, int heightBoard);
     void move();
     void rightAndLeft(Cell[][] cellsBoard, int type);
-    void next();
+    void next(Cell[][] cellsBoard);
     Cell[][] getCells();
 //    int getWorkWidth();
 //    int getWorkHeight();
