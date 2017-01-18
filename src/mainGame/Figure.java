@@ -9,8 +9,6 @@ public interface Figure {
     void rightAndLeft(Cell[][] cellsBoard, int type);
     void next(Cell[][] cellsBoard);
     Cell[][] getCells();
-//    int getWorkWidth();
-//    int getWorkHeight();
 
     static Color randomColor(){
         Random random = new Random();

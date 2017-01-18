@@ -43,7 +43,7 @@ public class OFigure implements Figure {
         }
     }
 
-    //RIGHT and LEFT
+    //type only RIGHT and LEFT
     @Override
     public void rightAndLeft(Cell[][] cellsBoard, int type) {
         Cell[][] oldCells = new Cell[workWidth][workHeight]; //copy figure
@@ -100,16 +100,17 @@ public class OFigure implements Figure {
             }
         }
         //check figure to display
-        T: for (int i = 0; i < cells.length; i++) {
+        label:
+        for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
                 if (cells[i][j].isVisible()) {
                     if ((cells[i][j].getxBoard() > cellsBoard.length - 1)
                             || (cells[i][j].getxBoard() < 0)
-                            || (cells[i][j].getyBoard() < cellsBoard[i].length)
+                            || (cells[i][j].getyBoard() > cellsBoard[i].length - 1)
                             || (cells[i][j].getyBoard() < 0)
                             || cellsBoard[cells[i][j].getxBoard()][cells[i][j].getyBoard()].isVisible()) {
                         good = true;
-                        break T;
+                        break label;
                     }
                 }
             }
@@ -128,15 +129,4 @@ public class OFigure implements Figure {
     public Cell[][] getCells() {
         return cells;
     }
-
-//    @Override
-//    public int getWorkWidth() {
-//        return workWidth;
-//    }
-//
-//    @Override
-//    public int getWorkHeight() {
-//        return workHeight;
-//    }
-
 }
