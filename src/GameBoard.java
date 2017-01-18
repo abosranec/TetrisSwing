@@ -10,6 +10,10 @@ public class GameBoard extends JPanel {
     private int heightCell; //height cell
     private Cell[][] gridLayout = new Cell[10][20];
     private Figure currentFigure;
+    public final static int MOVE = 1;
+    public final static int UP = 2;
+    public final static int RIGHT = 3;
+    public final static int LEFT = 4;
     public GameBoard(int x, int y, int width, int height) {
         setLayout(null);
         setBounds(x, y, width, height);
@@ -38,7 +42,7 @@ public class GameBoard extends JPanel {
         drawCurrentFigure(true);
     }
 
-    public void drawCurrentFigure(boolean visible) {
+    private void drawCurrentFigure(boolean visible) {
         for (int i = 0; i < currentFigure.getCells().length; i++) {
             for (int j = 0; j < (currentFigure.getCells())[i].length; j++) {
                 if (currentFigure.getCells()[i][j].isVisible()) {
@@ -51,11 +55,19 @@ public class GameBoard extends JPanel {
         }
     }
 
-    public void moveCurrentFigure(){
+    //type only MOVE, UP, RIGHT, LEFT
+    public void moveCurrentFigure(int type){
         //erase old figure
         drawCurrentFigure(false);
+
         //move new figure
-        currentFigure.move();
+        switch (type){
+            case MOVE: currentFigure.move(); break;
+            case UP: ; break;
+            case RIGHT: currentFigure.right(); break;
+            case LEFT: currentFigure.left(); break;
+        }
+
         //draw new figure
         drawCurrentFigure(true);
     }

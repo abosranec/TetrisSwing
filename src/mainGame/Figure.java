@@ -6,8 +6,8 @@ import java.util.Random;
 public interface Figure {
     void initFigure(int wigthBoard, int heightBoard);
     void move();
-    void rightFigure();
-    void leftFigure();
+    void right();
+    void left();
     Cell[][] getCells();
     int getWorkWidth();
     int getWorkHeight();

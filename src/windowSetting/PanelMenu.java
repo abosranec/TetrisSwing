@@ -2,11 +2,14 @@ package windowSetting;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class PanelMenu extends JPanel {
     private JButton bStart;
     private JButton bRepeat;
     private JButton bExit;
+    private boolean b;
     public PanelMenu() {
         super(new GridBagLayout());
         setBorder(BorderFactory.createRaisedBevelBorder());

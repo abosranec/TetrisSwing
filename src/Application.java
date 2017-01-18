@@ -1,4 +1,3 @@
-import java.util.Date;
 
 public class Application {
 
@@ -11,7 +10,6 @@ public class Application {
         thread.start();
     }
 }
-
 
 
 

@@ -45,13 +45,21 @@ public class OFigure implements Figure {
     }
 
     @Override
-    public void rightFigure() {
-
+    public void right() {
+        for (int i = 0; i < cells.length; i++) {
+            for (int j = 0; j < cells[i].length; j++) {
+                cells[i][j].setxBoard(cells[i][j].getxBoard() + 1);
+            }
+        }
     }
 
     @Override
-    public void leftFigure() {
-
+    public void left() {
+        for (int i = 0; i < cells.length; i++) {
+            for (int j = 0; j < cells[i].length; j++) {
+                cells[i][j].setxBoard(cells[i][j].getxBoard() - 1);
+            }
+        }
     }
 
     @Override

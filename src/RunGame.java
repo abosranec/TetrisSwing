@@ -1,13 +1,20 @@
 import mainGame.Figure;
 import mainGame.OFigure;
+import windowSetting.MyKeyEventDispatcher;
+
+import java.awt.*;
 
 public class RunGame implements Runnable {
     private MainFrame mainFrame;
     private GameBoard gameBoard;
-    private long gameSpeed = 200;
+    private MyKeyEventDispatcher myKeyEventDispatcher;
+    private long gameSpeed = 1000;
     public RunGame(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         gameBoard = mainFrame.getGameBoard();
+        //for global keyListener
+        myKeyEventDispatcher = new MyKeyEventDispatcher();
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(myKeyEventDispatcher);
     }
 
     @Override
@@ -18,13 +25,23 @@ public class RunGame implements Runnable {
         Figure currentFigure = new OFigure(gameBoard.getGridLayout().length, gameBoard.getGridLayout()[0].length);
         gameBoard.newCurrentFigure(currentFigure);
         while(true){
+            //move right
+            if (myKeyEventDispatcher.isRight()) {
+                gameBoard.moveCurrentFigure(GameBoard.RIGHT);
+                myKeyEventDispatcher.resetRight();
+            }
+            //move left
+            if (myKeyEventDispatcher.isLeft()) {
+                gameBoard.moveCurrentFigure(GameBoard.LEFT);
+                myKeyEventDispatcher.resetLeft();
+            }
+
+            //simple move down
             while(Math.abs(System.currentTimeMillis() - currentTime) > gameSpeed){
                 // for game speed
                 currentTime = System.currentTimeMillis();
-
                 //move figure for board
-                //System.out.println("opa");
-                gameBoard.moveCurrentFigure();
+                gameBoard.moveCurrentFigure(GameBoard.MOVE);
             }
         }
     }

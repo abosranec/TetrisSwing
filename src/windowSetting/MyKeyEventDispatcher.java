@@ -1,0 +1,68 @@
+package windowSetting;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.KeyEvent;
+
+public class MyKeyEventDispatcher implements KeyEventDispatcher{
+    private volatile boolean up;
+    private volatile boolean down;
+    private volatile boolean right;
+    private volatile boolean left;
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent e) {
+        if (KeyStroke.getKeyStrokeForEvent(e).getKeyEventType() == 401){
+            if(e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP && !up)
+                up = true;
+            if(e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN && !down)
+                down = true;
+            if(e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT && !right)
+                right = true;
+            if(e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT && !left)
+                left = true;
+        }
+//        if (KeyStroke.getKeyStrokeForEvent(e).getKeyEventType() == 402){
+//            if(e.getKeyCode() == e.VK_W || e.getKeyCode() == e.VK_UP)
+//                up = false;
+//            if(e.getKeyCode() == e.VK_S || e.getKeyCode() == e.VK_DOWN)
+//                down = false;
+//            if(e.getKeyCode() == e.VK_D || e.getKeyCode() == e.VK_RIGHT)
+//                right = false;
+//            if(e.getKeyCode() == e.VK_A || e.getKeyCode() == e.VK_LEFT)
+//                left = false;
+//        }
+        return false;
+    }
+
+    public boolean isUp() {
+        return up;
+    }
+
+    public boolean isDown() {
+        return down;
+    }
+
+    public boolean isRight() {
+        return right;
+    }
+
+    public boolean isLeft() {
+        return left;
+    }
+
+    public void resetUp() {
+        up = false;
+    }
+
+    public void resetDown() {
+        down = false;
+    }
+
+    public void resetRight() {
+        right = false;
+    }
+
+    public void resetLeft() {
+        left = false;
+    }
+}
