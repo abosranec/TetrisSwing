@@ -4,13 +4,14 @@ import java.awt.*;
 import java.util.Random;
 
 public interface Figure {
-    void initFigure(int wigthBoard, int heightBoard);
+    void initFigure(int widthBoard, int heightBoard);
     void move();
     void right();
     void left();
+    void next();
     Cell[][] getCells();
-    int getWorkWidth();
-    int getWorkHeight();
+//    int getWorkWidth();
+//    int getWorkHeight();
 
     static Color randomColor(){
         Random random = new Random();

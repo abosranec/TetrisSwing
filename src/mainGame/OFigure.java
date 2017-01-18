@@ -11,11 +11,11 @@ public class OFigure implements Figure {
     private Cell[][] cells;
     private Color color;
 
-    public OFigure(int wigthBoard, int heightBoard) {
+    public OFigure(int widthBoard, int heightBoard) {
         //create random color
         color = Figure.randomColor();
         //make figure
-        initFigure(wigthBoard, heightBoard);
+        initFigure(widthBoard, heightBoard);
     }
 
     @Override
@@ -63,18 +63,23 @@ public class OFigure implements Figure {
     }
 
     @Override
+    public void next() {
+
+    }
+
+    @Override
     public Cell[][] getCells() {
         return cells;
     }
 
-    @Override
-    public int getWorkWidth() {
-        return workWidth;
-    }
-
-    @Override
-    public int getWorkHeight() {
-        return workHeight;
-    }
+//    @Override
+//    public int getWorkWidth() {
+//        return workWidth;
+//    }
+//
+//    @Override
+//    public int getWorkHeight() {
+//        return workHeight;
+//    }
 
 }

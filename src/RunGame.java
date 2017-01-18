@@ -8,7 +8,7 @@ public class RunGame implements Runnable {
     private MainFrame mainFrame;
     private GameBoard gameBoard;
     private MyKeyEventDispatcher myKeyEventDispatcher;
-    private long gameSpeed = 1000;
+    private int gameSpeed = 1000;
     public RunGame(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         gameBoard = mainFrame.getGameBoard();
@@ -37,7 +37,7 @@ public class RunGame implements Runnable {
             }
 
             //simple move down
-            while(Math.abs(System.currentTimeMillis() - currentTime) > gameSpeed){
+            while(Math.abs(System.currentTimeMillis() - currentTime) > myKeyEventDispatcher.setSpeed(gameSpeed)){
                 // for game speed
                 currentTime = System.currentTimeMillis();
                 //move figure for board

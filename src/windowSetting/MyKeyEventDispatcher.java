@@ -9,6 +9,7 @@ public class MyKeyEventDispatcher implements KeyEventDispatcher{
     private volatile boolean down;
     private volatile boolean right;
     private volatile boolean left;
+    private int speedDown = 50;
     @Override
     public boolean dispatchKeyEvent(KeyEvent e) {
         if (KeyStroke.getKeyStrokeForEvent(e).getKeyEventType() == 401){
@@ -21,17 +22,24 @@ public class MyKeyEventDispatcher implements KeyEventDispatcher{
             if(e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT && !left)
                 left = true;
         }
-//        if (KeyStroke.getKeyStrokeForEvent(e).getKeyEventType() == 402){
+        if (KeyStroke.getKeyStrokeForEvent(e).getKeyEventType() == 402){
 //            if(e.getKeyCode() == e.VK_W || e.getKeyCode() == e.VK_UP)
 //                up = false;
-//            if(e.getKeyCode() == e.VK_S || e.getKeyCode() == e.VK_DOWN)
-//                down = false;
+            if(e.getKeyCode() == e.VK_S || e.getKeyCode() == e.VK_DOWN)
+                down = false;
 //            if(e.getKeyCode() == e.VK_D || e.getKeyCode() == e.VK_RIGHT)
 //                right = false;
 //            if(e.getKeyCode() == e.VK_A || e.getKeyCode() == e.VK_LEFT)
 //                left = false;
-//        }
+        }
         return false;
+    }
+
+    public int setSpeed(int currentSpeed){
+        if (isDown())
+            return speedDown;
+        else
+            return currentSpeed;
     }
 
     public boolean isUp() {

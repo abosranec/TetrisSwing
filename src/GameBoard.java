@@ -11,7 +11,7 @@ public class GameBoard extends JPanel {
     private Cell[][] gridLayout = new Cell[10][20];
     private Figure currentFigure;
     public final static int MOVE = 1;
-    public final static int UP = 2;
+    public final static int NEXT = 2;
     public final static int RIGHT = 3;
     public final static int LEFT = 4;
     public GameBoard(int x, int y, int width, int height) {
@@ -63,7 +63,7 @@ public class GameBoard extends JPanel {
         //move new figure
         switch (type){
             case MOVE: currentFigure.move(); break;
-            case UP: ; break;
+            case NEXT: currentFigure.next(); break;
             case RIGHT: currentFigure.right(); break;
             case LEFT: currentFigure.left(); break;
         }
