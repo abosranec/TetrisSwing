@@ -1,7 +1,6 @@
 package mainGame;
 
 import java.awt.*;
-import java.util.Random;
 
 //   ##
 //   ##
@@ -44,23 +43,45 @@ public class OFigure implements Figure {
         }
     }
 
+    //RIGHT and LEFT
     @Override
-    public void right() {
+    public void rightAndLeft(Cell[][] cellsBoard, int type) {
+        Cell[][] oldCells = new Cell[workWidth][workHeight];
+        boolean good = false;
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
-                cells[i][j].setxBoard(cells[i][j].getxBoard() + 1);
+                oldCells[i][j] = new Cell(cells[i][j]);
+                if (cells[i][j].isVisible()) {
+                    if ((cells[i][j].getxBoard() + type < cellsBoard.length)
+                            && (cells[i][j].getxBoard() + type > -1)
+                            && !cellsBoard[cells[i][j].getxBoard() + type][j].isVisible())
+                        cells[i][j].setxBoard(cells[i][j].getxBoard() + type);
+                    else {
+                        good = true;
+                        continue;
+                    }
+                }
             }
+        }
+
+        if (good){
+            for (int i = 0; i < cells.length; i++) {
+                for (int j = 0; j < cells[i].length; j++) {
+                    cells[i][j] = oldCells[i][j];
+                }
+            }
+
         }
     }
 
-    @Override
-    public void left() {
-        for (int i = 0; i < cells.length; i++) {
-            for (int j = 0; j < cells[i].length; j++) {
-                cells[i][j].setxBoard(cells[i][j].getxBoard() - 1);
-            }
-        }
-    }
+//    @Override
+//    public void left(Cell[][] cellsBoard) {
+//        for (int i = 0; i < cells.length; i++) {
+//            for (int j = 0; j < cells[i].length; j++) {
+//                cells[i][j].setxBoard(cells[i][j].getxBoard() - 1);
+//            }
+//        }
+//    }
 
     @Override
     public void next() {

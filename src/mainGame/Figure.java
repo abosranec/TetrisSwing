@@ -6,8 +6,7 @@ import java.util.Random;
 public interface Figure {
     void initFigure(int widthBoard, int heightBoard);
     void move();
-    void right();
-    void left();
+    void rightAndLeft(Cell[][] cellsBoard, int type);
     void next();
     Cell[][] getCells();
 //    int getWorkWidth();

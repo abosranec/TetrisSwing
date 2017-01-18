@@ -4,12 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Cell extends JLabel {
-    private Image image;
+    private Icon image;
     private int xBoard;
     private int yBoard;
 
     public Cell(int x, int y, int width, int height, int xBoard, int yBoard) {
-        //setHorizontalAlignment(JLabel.CENTER);
         setBorder(BorderFactory.createRaisedBevelBorder());
         setBounds(x, y, width, height);
         this.xBoard = xBoard;
@@ -21,6 +20,16 @@ public class Cell extends JLabel {
         setBackground(color);
         this.xBoard = xBoard;
         this.yBoard = yBoard;
+    }
+
+    public Cell(Cell cell) {
+        this.image = cell.getIcon();
+        this.xBoard = cell.getxBoard();
+        this.yBoard = cell.getyBoard();
+        setBorder(cell.getBorder());
+        setBounds(cell.getBounds());
+        setVisible(cell.isVisible());
+        setBackground(cell.getBackground());
     }
 
     public int getxBoard() {
