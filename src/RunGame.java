@@ -35,6 +35,11 @@ public class RunGame implements Runnable {
                 gameBoard.moveCurrentFigure(GameBoard.LEFT);
                 myKeyEventDispatcher.resetLeft();
             }
+            //next figure
+            if (myKeyEventDispatcher.isUp()) {
+                gameBoard.moveCurrentFigure(GameBoard.NEXT);
+                myKeyEventDispatcher.resetUp();
+            }
 
             //simple move down
             while(Math.abs(System.currentTimeMillis() - currentTime) > myKeyEventDispatcher.setSpeed(gameSpeed)){

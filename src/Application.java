@@ -11,7 +11,7 @@ public class Application {
 
 
         /////////////////////////////////////////
-//        int m = 4;
+//        int m = 2;
 //        int[][] A = new int[m][m];
 //        // fill matrix
 //        for (int i=0; i<m; i++)

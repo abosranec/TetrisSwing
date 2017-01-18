@@ -64,7 +64,22 @@ public class OFigure implements Figure {
 
     @Override
     public void next() {
-
+        for (int i=0; i<workWidth/2; i++)
+        {
+            for (int j=i; j<workHeight-1-i; j++)
+            {
+                int x = cells[i][j].getxBoard();
+                int y = cells[i][j].getyBoard();
+                cells[i][j].setxBoard(cells[j][workWidth-1-i].getxBoard());
+                cells[i][j].setyBoard(cells[j][workWidth-1-i].getyBoard());
+                cells[j][workWidth-1-i].setxBoard(cells[workWidth-1-i][workWidth-1-j].getxBoard());
+                cells[j][workWidth-1-i].setyBoard(cells[workWidth-1-i][workWidth-1-j].getyBoard());
+                cells[workWidth-1-i][workWidth-1-j].setxBoard(cells[workWidth-1-j][i].getxBoard());
+                cells[workWidth-1-i][workWidth-1-j].setyBoard(cells[workWidth-1-j][i].getyBoard());
+                cells[workWidth-1-j][i].setxBoard(x);
+                cells[workWidth-1-j][i].setyBoard(y);
+            }
+        }
     }
 
     @Override
