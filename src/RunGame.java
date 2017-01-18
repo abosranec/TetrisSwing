@@ -15,7 +15,7 @@ public class RunGame implements Runnable {
         long currentTime = System.currentTimeMillis();
 
         //select random figure
-        Figure currentFigure = new OFigure();
+        Figure currentFigure = new OFigure(gameBoard.getGridLayout().length, gameBoard.getGridLayout()[0].length);
         gameBoard.newCurrentFigure(currentFigure);
         while(true){
             while(Math.abs(System.currentTimeMillis() - currentTime) > gameSpeed){

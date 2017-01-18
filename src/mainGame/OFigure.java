@@ -11,42 +11,37 @@ public class OFigure implements Figure {
     private Cell[][] cells;
     private Color color;
 
-    public OFigure() {
+    public OFigure(int wigthBoard, int heightBoard) {
         //create random color
-        randomColor();
-
+        color = Figure.randomColor();
         //make figure
-        initFigure();
-    }
-
-    public void randomColor(){
-        Random random = new Random();
-        color = new Color(
-                50 + (int)(System.currentTimeMillis() % 150),
-                50 + random.nextInt(150),
-                50 + random.nextInt(75) + (int)(System.currentTimeMillis() % 75));
+        initFigure(wigthBoard, heightBoard);
     }
 
     @Override
-    public void initFigure() {
+    public void initFigure(int wigthBoard, int heightBoard) {
         cells = new Cell[workWidth][workHeight];
         //*#
         //##
-        cells[0][0] = new Cell(true, color);
+        cells[0][0] = new Cell(true, color, (wigthBoard - workWidth) / 2, 0);
         //#*
         //##
-        cells[0][1] = new Cell(true, color);
+        cells[0][1] = new Cell(true, color, 1 + (wigthBoard - workWidth) / 2, 0);
         //##
         //*#
-        cells[1][0] = new Cell(true, color);
+        cells[1][0] = new Cell(true, color, (wigthBoard - workWidth) / 2, 1);
         //##
         //#*
-        cells[1][1] = new Cell(true, color);
+        cells[1][1] = new Cell(true, color, 1 + (wigthBoard - workWidth) / 2, 1);
     }
 
     @Override
     public void move() {
-
+        for (int i = 0; i < cells.length; i++) {
+            for (int j = 0; j < cells[i].length; j++) {
+                cells[i][j].setyBoard(cells[i][j].getyBoard() + 1);
+            }
+        }
     }
 
     @Override

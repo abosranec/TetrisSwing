@@ -35,52 +35,32 @@ public class GameBoard extends JPanel {
 
     public void newCurrentFigure(Figure newFigure) {
         this.currentFigure = newFigure;
-        drawCurrentFigure();
+        drawCurrentFigure(true);
     }
 
-    public void drawCurrentFigure() {
+    public void drawCurrentFigure(boolean visible) {
         for (int i = 0; i < currentFigure.getCells().length; i++) {
             for (int j = 0; j < (currentFigure.getCells())[i].length; j++) {
                 if (currentFigure.getCells()[i][j].isVisible()) {
-                    int x = (gridLayout.length - currentFigure.getWorkWidth()) / 2;
-                    currentFigure.getCells()[i][j].setxBoard(x+j);
-                    currentFigure.getCells()[i][j].setyBoard(i);
-                    gridLayout[x + j][i].setBackground((currentFigure.getCells()[i][j]).getBackground());
-                    gridLayout[x + j][i].setVisible(true);
-                    gridLayout[x + j][i].repaint();
+                    int xBoard = currentFigure.getCells()[i][j].getxBoard();
+                    int yBoard = currentFigure.getCells()[i][j].getyBoard();
+                    gridLayout[xBoard][yBoard].setBackground((currentFigure.getCells()[i][j]).getBackground());
+                    gridLayout[xBoard][yBoard].setVisible(visible);
                 }
             }
         }
     }
 
     public void moveCurrentFigure(){
-        //delete old figure
-        for (int i = 0; i < currentFigure.getCells().length; i++) {
-            for (int j = 0; j < (currentFigure.getCells())[i].length; j++) {
-                if (currentFigure.getCells()[i][j].isVisible()) {
-                    int xBoard = currentFigure.getCells()[i][j].getxBoard();
-                    int yBoard = currentFigure.getCells()[i][j].getyBoard();
-
-                    gridLayout[xBoard][yBoard].setVisible(false);
-                    gridLayout[xBoard][yBoard].repaint();
-
-                    currentFigure.getCells()[i][j].setyBoard(yBoard + 1);
-                }
-            }
-        }
-
+        //erase old figure
+        drawCurrentFigure(false);
         //move new figure
-        for (int i = 0; i < currentFigure.getCells().length; i++) {
-            for (int j = 0; j < (currentFigure.getCells())[i].length; j++) {
-                if (currentFigure.getCells()[i][j].isVisible()) {
-                    int xBoard = currentFigure.getCells()[i][j].getxBoard();
-                    int yBoard = currentFigure.getCells()[i][j].getyBoard();
+        currentFigure.move();
+        //draw new figure
+        drawCurrentFigure(true);
+    }
 
-                    gridLayout[xBoard][yBoard].setBackground((currentFigure.getCells()[i][j]).getBackground());
-                    gridLayout[xBoard][yBoard].setVisible(true);
-                    gridLayout[xBoard][yBoard].repaint();
-                }
-            }
-        }
+    public Cell[][] getGridLayout() {
+        return gridLayout;
     }
 }

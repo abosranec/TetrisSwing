@@ -16,9 +16,11 @@ public class Cell extends JLabel {
         this.yBoard = yBoard;
     }
 
-    public Cell(boolean isUse, Color color) {
+    public Cell(boolean isUse, Color color, int xBoard, int yBoard) {
         setVisible(isUse);
         setBackground(color);
+        this.xBoard = xBoard;
+        this.yBoard = yBoard;
     }
 
     public int getxBoard() {
