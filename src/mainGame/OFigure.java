@@ -43,7 +43,7 @@ public class OFigure implements Figure {
         }
     }
 
-    //type only RIGHT and LEFT
+    //type only RIGHT or LEFT
     @Override
     public void rightAndLeft(Cell[][] cellsBoard, int type) {
         Cell[][] oldCells = new Cell[workWidth][workHeight]; //copy figure
@@ -51,15 +51,17 @@ public class OFigure implements Figure {
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
                 oldCells[i][j] = new Cell(cells[i][j]);
-                if (cells[i][j].isVisible()) {
-                    //check figure to display
-                    if ((cells[i][j].getxBoard() + type < cellsBoard.length)
-                            && (cells[i][j].getxBoard() + type > -1)
-                            && !cellsBoard[cells[i][j].getxBoard() + type][cells[i][j].getyBoard()].isVisible())
+                //check figure to display
+                if (cells[i][j].isVisible()
+                        && (cells[i][j].getxBoard() + type < cellsBoard.length)
+                        && (cells[i][j].getxBoard() + type > -1)) {
+                    if (!cellsBoard[cells[i][j].getxBoard() + type][cells[i][j].getyBoard()].isVisible()) {
                         cells[i][j].setxBoard(cells[i][j].getxBoard() + type);
-                    else
-                        good = true;
+                        continue;
+                    }
                 }
+                //if have mistake
+                good = true;
             }
         }
         //if new figure is impossible, use copy figure
@@ -100,19 +102,21 @@ public class OFigure implements Figure {
             }
         }
         //check figure to display
-        label:
+        T:
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
                 if (cells[i][j].isVisible()) {
-                    if ((cells[i][j].getxBoard() > cellsBoard.length - 1)
-                            || (cells[i][j].getxBoard() < 0)
-                            || (cells[i][j].getyBoard() > cellsBoard[i].length - 1)
-                            || (cells[i][j].getyBoard() < 0)
-                            || cellsBoard[cells[i][j].getxBoard()][cells[i][j].getyBoard()].isVisible()) {
-                        good = true;
-                        break label;
-                    }
+                    if ((cells[i][j].getxBoard() < cellsBoard.length)
+                            && (cells[i][j].getxBoard() > -1)
+                            && (cells[i][j].getyBoard() < cellsBoard[i].length)
+                            && (cells[i][j].getyBoard() > -1))
+                        if(!cellsBoard[cells[i][j].getxBoard()][cells[i][j].getyBoard()].isVisible()) {
+                            continue ;
+                        }
                 }
+                //if have mistake
+                good = true;
+                break T;
             }
         }
         //if new figure is impossible, use copy figure
