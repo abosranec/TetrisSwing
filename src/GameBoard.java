@@ -48,8 +48,10 @@ public class GameBoard extends JPanel {
                 if (currentFigure.getCells()[i][j].isVisible()) {
                     int xBoard = currentFigure.getCells()[i][j].getxBoard();
                     int yBoard = currentFigure.getCells()[i][j].getyBoard();
-                    gridLayout[xBoard][yBoard].setBackground((currentFigure.getCells()[i][j]).getBackground());
-                    gridLayout[xBoard][yBoard].setVisible(visible);
+                    if (xBoard > -1 && yBoard > -1) {
+                        gridLayout[xBoard][yBoard].setBackground((currentFigure.getCells()[i][j]).getBackground());
+                        gridLayout[xBoard][yBoard].setVisible(visible);
+                    }
                 }
             }
         }
