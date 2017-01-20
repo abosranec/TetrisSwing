@@ -1,5 +1,4 @@
-import mainGame.Figure;
-import mainGame.OFigure;
+import mainGame.*;
 import windowSetting.MyKeyEventDispatcher;
 
 import java.awt.*;
@@ -8,7 +7,7 @@ public class RunGame implements Runnable {
     private MainFrame mainFrame;
     private GameBoard gameBoard;
     private MyKeyEventDispatcher myKeyEventDispatcher;
-    private int gameSpeed = 1000;
+    private int gameSpeed = 10000;
     public RunGame(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         gameBoard = mainFrame.getGameBoard();
@@ -22,7 +21,7 @@ public class RunGame implements Runnable {
         long currentTime = System.currentTimeMillis();
 
         //select random figure
-        Figure currentFigure = new OFigure(gameBoard.getGridLayout().length, gameBoard.getGridLayout()[0].length);
+        Figure currentFigure = new TFigure(gameBoard.getGridLayout().length, gameBoard.getGridLayout()[0].length);
         gameBoard.newCurrentFigure(currentFigure);
         while(true){
             //move right
