@@ -112,6 +112,31 @@ public abstract class FigureAdapter implements Figure {
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
                 if (cells[i][j].isVisible()) {
+                    //for moving figure left, if it don't can be on board
+                    if (cells[i][j].getxBoard() > cellsBoard.length - 1) {
+                        int maxLeft = 0;
+                        for (int k = 0; k < cells.length; k++) {
+                            for (int l = 0; l < cells[k].length; l++) {
+                                if (cells[k][l].isVisible() && (cells[k][l].getxBoard() > maxLeft)) {
+                                    maxLeft = cells[k][l].getxBoard();
+                                }
+                            }
+                        }
+                        rightAndLeft(cellsBoard, (cellsBoard.length - 1) - maxLeft);
+                    }
+                    //for moving figure right, if it don't can be on board
+                    if (cells[i][j].getxBoard() < 0 ) {
+                        int minRight = 0;
+                        for (int k = 0; k < cells.length; k++) {
+                            for (int l = 0; l < cells[k].length; l++) {
+                                if (cells[k][l].isVisible() && (cells[k][l].getxBoard() < minRight)) {
+                                    minRight = cells[k][l].getxBoard();
+                                }
+                            }
+                        }
+                        rightAndLeft(cellsBoard, 0 - minRight);
+                    }
+                    //end check for draw
                     if ((cells[i][j].getxBoard() < cellsBoard.length)
                             && (cells[i][j].getxBoard() > -1)
                             && (cells[i][j].getyBoard() < cellsBoard[i].length)) {
