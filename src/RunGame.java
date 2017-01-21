@@ -21,7 +21,7 @@ public class RunGame implements Runnable {
         long currentTime = System.currentTimeMillis();
 
         //select random figure
-        Figure currentFigure = new TFigure(gameBoard.getGridLayout());
+        Figure currentFigure = new IFigure(gameBoard.getGridLayout());
         gameBoard.newCurrentFigure(currentFigure);
         while(true){
             //move right

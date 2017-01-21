@@ -20,7 +20,7 @@ public abstract class FigureAdapter implements Figure {
         //initial cells
         for (int i = 0; i < workWidth; i++) {
             for (int j = 0; j < workHeight; j++) {
-                cells[i][j] = new Cell(false,  color, j + (widthBoard - workWidth) / 2, i-1);
+                cells[i][j] = new Cell(false,  color, j + (widthBoard - workWidth) / 2, i-(workHeight - 1));
             }
         }
     }
@@ -143,10 +143,9 @@ public abstract class FigureAdapter implements Figure {
         return cells;
     }
 
-    protected void randomStartPosition(Cell[][] cellsBoard){
-        int number = (int)(System.currentTimeMillis() % 4);
-        System.out.println(number);
-        while(number-- > 0){
+    protected void randomStartPosition(Cell[][] cellsBoard, int randomPosition){
+        randomPosition = (int)(System.currentTimeMillis() % randomPosition);
+        while(randomPosition-- > 0){
             next(cellsBoard);
         }
     }
