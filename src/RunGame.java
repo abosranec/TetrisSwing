@@ -7,7 +7,7 @@ public class RunGame implements Runnable {
     private MainFrame mainFrame;
     private GameBoard gameBoard;
     private MyKeyEventDispatcher myKeyEventDispatcher;
-    private int gameSpeed = 10000;
+    private int gameSpeed = 2000;
     public RunGame(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         gameBoard = mainFrame.getGameBoard();
