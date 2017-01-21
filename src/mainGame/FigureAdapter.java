@@ -8,6 +8,23 @@ public abstract class FigureAdapter implements Figure {
     protected Cell[][] cells;
     protected Color color;
 
+    //need to initialize color, workWidth, workHeight and cells
+    @Override
+    public void initFigure(int widthBoard, int heightBoard, int wWidth, int wHeight) {
+        //create random color
+        color = Figure.randomColor();
+        //make figure
+        workWidth = wWidth;
+        workHeight = wHeight;
+        cells = new Cell[workWidth][workHeight];
+        //initial cells
+        for (int i = 0; i < workWidth; i++) {
+            for (int j = 0; j < workHeight; j++) {
+                cells[i][j] = new Cell(false,  color, j + (widthBoard - workWidth) / 2, i-1);
+            }
+        }
+    }
+
     @Override
     public void move() {
         for (int i = 0; i < cells.length; i++) {
@@ -30,10 +47,15 @@ public abstract class FigureAdapter implements Figure {
                 //check figure to display
                 if (cells[i][j].isVisible()){
                     if((cells[i][j].getxBoard() < cellsBoard.length)
-                            && (cells[i][j].getxBoard() > -1))
-                        if (!cellsBoard[cells[i][j].getxBoard()][cells[i][j].getyBoard()].isVisible()) {
-                            continue;
+                            && (cells[i][j].getxBoard() > -1)
+                            && (cells[i][j].getyBoard() < cellsBoard[i].length)) {
+                        if ((cells[i][j].getyBoard() > -1)) {
+                            if (!cellsBoard[cells[i][j].getxBoard()][cells[i][j].getyBoard()].isVisible()) {
+                                continue;
+                            }
                         }
+                        else continue;
+                    }
                     //if have mistake
                     good = true;
                 }
@@ -41,8 +63,8 @@ public abstract class FigureAdapter implements Figure {
         }
         //if new figure is impossible, use copy figure
         if (good){
-            for (int i = 0; i < cells.length; i++) {
-                for (int j = 0; j < cells[i].length; j++) {
+            for (int i = 0; i < workWidth; i++) {
+                for (int j = 0; j < workHeight; j++) {
                     cells[i][j] = oldCells[i][j];
                 }
             }
@@ -92,11 +114,14 @@ public abstract class FigureAdapter implements Figure {
                 if (cells[i][j].isVisible()) {
                     if ((cells[i][j].getxBoard() < cellsBoard.length)
                             && (cells[i][j].getxBoard() > -1)
-                            && (cells[i][j].getyBoard() < cellsBoard[i].length)
-                            && (cells[i][j].getyBoard() > -1))
-                        if(!cellsBoard[cells[i][j].getxBoard()][cells[i][j].getyBoard()].isVisible()) {
-                            continue ;
+                            && (cells[i][j].getyBoard() < cellsBoard[i].length)) {
+                        if (cells[i][j].getyBoard() > -1) {
+                            if (!cellsBoard[cells[i][j].getxBoard()][cells[i][j].getyBoard()].isVisible()) {
+                                continue;
+                            }
                         }
+                        else continue;
+                    }
                     //if have mistake
                     good = true;
                     break T;
@@ -105,8 +130,8 @@ public abstract class FigureAdapter implements Figure {
         }
         //if new figure is impossible, use copy figure
         if (good){
-            for (int i = 0; i < cells.length; i++) {
-                for (int j = 0; j < cells[i].length; j++) {
+            for (int i = 0; i < workWidth; i++) {
+                for (int j = 0; j < workHeight; j++) {
                     cells[i][j] = oldCells[i][j];
                 }
             }
@@ -116,5 +141,13 @@ public abstract class FigureAdapter implements Figure {
     @Override
     public Cell[][] getCells() {
         return cells;
+    }
+
+    protected void randomStartPosition(Cell[][] cellsBoard){
+        int number = (int)(System.currentTimeMillis() % 4);
+        System.out.println(number);
+        while(number-- > 0){
+            next(cellsBoard);
+        }
     }
 }

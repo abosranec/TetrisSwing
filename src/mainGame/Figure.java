@@ -4,7 +4,7 @@ import java.awt.*;
 import java.util.Random;
 
 public interface Figure {
-    void initFigure(int widthBoard, int heightBoard);
+    void initFigure(int widthBoard, int heightBoard, int wWidth, int wHeight);
     void move();
     void rightAndLeft(Cell[][] cellsBoard, int type);
     void next(Cell[][] cellsBoard);
