@@ -64,7 +64,7 @@ public class GameBoard extends JPanel {
 
         //move new figure
         switch (type){
-            case MOVE: currentFigure.move(); break;
+            case MOVE: currentFigure.move(gridLayout); break;
             case NEXT: currentFigure.next(gridLayout); break;
             case RIGHT: currentFigure.rightAndLeft(gridLayout, RIGHT); break;
             case LEFT: currentFigure.rightAndLeft(gridLayout, LEFT); break;
@@ -76,5 +76,10 @@ public class GameBoard extends JPanel {
 
     public Cell[][] getGridLayout() {
         return gridLayout;
+    }
+
+    public int checkBoardOnString(){
+
+        return 0;
     }
 }

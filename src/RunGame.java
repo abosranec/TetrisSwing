@@ -18,35 +18,37 @@ public class RunGame implements Runnable {
 
     @Override
     public void run() {
-        long currentTime = System.currentTimeMillis();
-
-        //select random figure
-        Figure currentFigure = new TFigure(gameBoard.getGridLayout());
-        gameBoard.newCurrentFigure(currentFigure);
-        while(true){
-            //move right
-            if (myKeyEventDispatcher.isRight()) {
-                gameBoard.moveCurrentFigure(GameBoard.RIGHT);
-                myKeyEventDispatcher.resetRight();
+        while (true) {
+            // for game speed
+            long currentTime = System.currentTimeMillis();
+            //select random figure
+            Figure currentFigure = new TFigure(gameBoard.getGridLayout());
+            gameBoard.newCurrentFigure(currentFigure);
+            while (currentFigure.isStatus()) {
+                //move right
+                if (myKeyEventDispatcher.isRight()) {
+                    gameBoard.moveCurrentFigure(GameBoard.RIGHT);
+                    myKeyEventDispatcher.resetRight();
+                }
+                //move left
+                if (myKeyEventDispatcher.isLeft()) {
+                    gameBoard.moveCurrentFigure(GameBoard.LEFT);
+                    myKeyEventDispatcher.resetLeft();
+                }
+                //next figure
+                if (myKeyEventDispatcher.isUp()) {
+                    gameBoard.moveCurrentFigure(GameBoard.NEXT);
+                    myKeyEventDispatcher.resetUp();
+                }
+                //simple move down
+                while (Math.abs(System.currentTimeMillis() - currentTime) > myKeyEventDispatcher.setSpeed(gameSpeed)) {
+                    // for game speed
+                    currentTime = System.currentTimeMillis();
+                    //move figure for board
+                    gameBoard.moveCurrentFigure(GameBoard.MOVE);
+                }
             }
-            //move left
-            if (myKeyEventDispatcher.isLeft()) {
-                gameBoard.moveCurrentFigure(GameBoard.LEFT);
-                myKeyEventDispatcher.resetLeft();
-            }
-            //next figure
-            if (myKeyEventDispatcher.isUp()) {
-                gameBoard.moveCurrentFigure(GameBoard.NEXT);
-                myKeyEventDispatcher.resetUp();
-            }
-
-            //simple move down
-            while(Math.abs(System.currentTimeMillis() - currentTime) > myKeyEventDispatcher.setSpeed(gameSpeed)){
-                // for game speed
-                currentTime = System.currentTimeMillis();
-                //move figure for board
-                gameBoard.moveCurrentFigure(GameBoard.MOVE);
-            }
+            //after destroy figure need check board on full string
         }
     }
 }

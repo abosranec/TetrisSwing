@@ -5,10 +5,11 @@ import java.util.Random;
 
 public interface Figure {
     void initFigure(int widthBoard, int heightBoard, int wWidth, int wHeight);
-    void move();
+    void move(Cell[][] cellsBoard);
     void rightAndLeft(Cell[][] cellsBoard, int type);
     void next(Cell[][] cellsBoard);
     Cell[][] getCells();
+    boolean isStatus();
 
     static Color randomColor(){
         Random random = new Random();
