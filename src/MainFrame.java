@@ -16,7 +16,7 @@ public class MainFrame extends JFrame {
     private int indent = 10;
 
     private void create(){
-        setTitle("Teeeetris");
+        setTitle("TETRIS");
         setSize(width, height);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setCenterPosition();

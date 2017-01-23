@@ -1,6 +1,7 @@
 import mainGame.*;
 import windowSetting.MyKeyEventDispatcher;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class RunGame implements Runnable {
@@ -25,7 +26,7 @@ public class RunGame implements Runnable {
                 // for game speed
                 long currentTime = System.currentTimeMillis();
                 //select random figure
-                Figure currentFigure = new TFigure(gameBoard.getGridLayout());
+                Figure currentFigure = Figure.randomFigure(gameBoard.getGridLayout());
                 gameBoard.newCurrentFigure(currentFigure);
                 //use new figure
                 while (currentFigure.isStatus()) {
@@ -56,6 +57,9 @@ public class RunGame implements Runnable {
                 if (gameBoard.checkBoardOnString() == gameBoard.GAME_OVER) {
                     System.out.println("game over");
                     gameOver = false;
+                    JOptionPane.showMessageDialog(null, "", "GAME OVER",
+                            JOptionPane.INFORMATION_MESSAGE,
+                            new ImageIcon("image\\gameOver.jpg"));
                 }
             }
 

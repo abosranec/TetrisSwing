@@ -18,4 +18,18 @@ public interface Figure {
                 50 + random.nextInt(150),
                 50 + random.nextInt(75) + (int)(System.currentTimeMillis() % 75));
     }
+
+    static Figure randomFigure(Cell[][] cellsBoard){
+        Random random = new Random();
+        switch (random.nextInt(7)){
+            case 0: return new IFigure(cellsBoard);
+            case 1: return new JFigure(cellsBoard);
+            case 2: return new LFigure(cellsBoard);
+            case 3: return new OFigure(cellsBoard);
+            case 4: return new SFigure(cellsBoard);
+            case 5: return new TFigure(cellsBoard);
+            case 6: return new ZFigure(cellsBoard);
+            default: return new TFigure(cellsBoard);
+        }
+    }
 }
