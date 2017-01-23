@@ -14,6 +14,7 @@ public class GameBoard extends JPanel {
     public final static int NEXT = 3;
     public final static int RIGHT = 1;
     public final static int LEFT = -1;
+    public final static int GAME_OVER = 10;
     public GameBoard(int x, int y, int width, int height) {
         setLayout(null);
         setBounds(x, y, width, height);
@@ -79,7 +80,42 @@ public class GameBoard extends JPanel {
     }
 
     public int checkBoardOnString(){
-
-        return 0;
+        int counterString = 0;
+        int counterCells = 0;
+        for (int i = 0; i < gridLayout[0].length; i++) {
+            //count cells on one string
+            for (int j = 0; j < gridLayout.length; j++) {
+                if (gridLayout[j][i].isVisible()) {
+                    counterCells++;
+                }
+            }
+            //if need to destroy string
+            if (counterCells == gridLayout.length){
+                counterString++;
+                for (int k = 0; k < gridLayout.length; k++) {
+                    for (int l = i; l > 0; l--) {
+                        gridLayout[k][l].setBackground(gridLayout[k][l - 1].getBackground());
+                        gridLayout[k][l].setVisible(gridLayout[k][l - 1].isVisible());
+                        gridLayout[k][l - 1].setVisible(false);
+                    }
+                }
+            }
+            counterCells = 0;
+        }
+        //check figure on the game over
+        T:
+        for (int i = 0; i < currentFigure.getCells().length; i++) {
+            for (int j = 0; j < (currentFigure.getCells())[i].length; j++) {
+                if (currentFigure.getCells()[i][j].isVisible()) {
+                    int xBoard = currentFigure.getCells()[i][j].getxBoard();
+                    int yBoard = currentFigure.getCells()[i][j].getyBoard();
+                    if (yBoard + counterString < 0) {
+                        counterString = GAME_OVER;
+                        break T;
+                    }
+                }
+            }
+        }
+        return counterString;
     }
 }
