@@ -23,6 +23,7 @@ public class MainFrame extends JFrame {
         setResizable(false);
         setIconImage(imageIcon);        //need icon
         setLayout(null);
+        setBackground(new Color(0,100,100));
     }
 
     private void setCenterPosition() {
