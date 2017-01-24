@@ -9,13 +9,23 @@ public class PanelMenu extends JPanel {
     private JButton bRepeat;
     private JButton bExit;
     private boolean start = false;
+    private boolean restart = false;
     public PanelMenu() {
         super(new GridBagLayout());
         setBorder(BorderFactory.createRaisedBevelBorder());
         init();
     }
     private void init(){
-        //create buttons start/stop
+        //create button start/stop
+        createBStart();
+        //create button restart
+        createBRepeat();
+        //create button exit game
+        createBExit();
+    }
+
+    //create button start/stop
+    private void createBStart(){
         bStart = new JButton("СТАРТ");
         bStart.addMouseListener(new MouseAdapter() {
             @Override
@@ -25,7 +35,6 @@ public class PanelMenu extends JPanel {
                     bStart.setText("ПАУЗА");
                 else
                     bStart.setText("СТАРТ");
-                System.out.println(start);
             }
         });
         add(bStart, new GridBagConstraints(
@@ -33,23 +42,54 @@ public class PanelMenu extends JPanel {
                 GridBagConstraints.CENTER,
                 GridBagConstraints.HORIZONTAL,
                 new Insets(-15,0,-15,0), 0, 0 ));
+    }
 
-
-        bRepeat = new JButton("сначала");
+    //create button restart
+    private void createBRepeat() {
+        bRepeat = new JButton("СНАЧАЛА");
         add(bRepeat, new GridBagConstraints(
                 0, 1, 1, 1, 0, 1,
                 GridBagConstraints.CENTER,
                 GridBagConstraints.HORIZONTAL,
                 new Insets(-15,0,-15,0), 0, 0 ));
-        bExit = new JButton("выход");
+        bRepeat.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                restart = true;
+            }
+        });
+    }
+
+    //create button exit game
+    private void createBExit(){
+        bExit = new JButton("ВЫХОД");
         add(bExit, new GridBagConstraints(
                 0, 2, 1, 1, 0, 1,
                 GridBagConstraints.CENTER,
                 GridBagConstraints.HORIZONTAL,
                 new Insets(-15,0,-15,0), 0, 0 ));
+        bExit.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                System.exit(0);
+            }
+        });
     }
 
     public boolean isStart() {
         return start;
+    }
+
+    public void resetStart() {
+        bStart.setText("ПАУЗА");
+        this.start = true;
+    }
+
+    public boolean isRestart() {
+        return restart;
+    }
+
+    public void resetRestart() {
+        this.restart = false;
     }
 }

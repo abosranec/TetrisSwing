@@ -79,6 +79,7 @@ public class GameBoard extends JPanel {
         return gridLayout;
     }
 
+    //destroy all board
     public int checkBoardOnString(){
         int counterString = 0;
         int counterCells = 0;
@@ -107,7 +108,6 @@ public class GameBoard extends JPanel {
         for (int i = 0; i < currentFigure.getCells().length; i++) {
             for (int j = 0; j < (currentFigure.getCells())[i].length; j++) {
                 if (currentFigure.getCells()[i][j].isVisible()) {
-                    int xBoard = currentFigure.getCells()[i][j].getxBoard();
                     int yBoard = currentFigure.getCells()[i][j].getyBoard();
                     if (yBoard + counterString < 0) {
                         counterString = GAME_OVER;
@@ -117,5 +117,14 @@ public class GameBoard extends JPanel {
             }
         }
         return counterString;
+    }
+
+    //destroy all board
+    public void resetGridLayout(){
+        for (int i = 0; i < gridLayout.length; i++) {
+            for (int j = 0; j < gridLayout[i].length; j++) {
+                gridLayout[i][j].setVisible(false);
+            }
+        }
     }
 }
