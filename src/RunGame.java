@@ -8,17 +8,21 @@ public class RunGame implements Runnable {
     private MainFrame mainFrame;
     private GameBoard gameBoard;
     private PanelMenu panelMenu;
+    private Score score;
     private MyKeyEventDispatcher myKeyEventDispatcher;
-    private int gameSpeed = 1000;
+    private int gameSpeed;
+    public static final int START_SPEED = 900;
     private boolean gameOver = true;
     private boolean reStartGame = false;
     public RunGame(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         gameBoard = mainFrame.getGameBoard();
         panelMenu = mainFrame.getPanelMenu();
+        score = mainFrame.getScore();
         //for global keyListener
         myKeyEventDispatcher = new MyKeyEventDispatcher();
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(myKeyEventDispatcher);
+        gameSpeed = START_SPEED;
     }
 
     @Override
@@ -51,10 +55,17 @@ public class RunGame implements Runnable {
                             break;
                         }
                     }
-                    //after destroy figure need check board on full string
-                    System.out.println(gameBoard.checkBoardOnString());
-                    if (gameBoard.checkBoardOnString() == GameBoard.GAME_OVER && !reStartGame)
+                    //check board on full string
+                    int numberString = gameBoard.checkBoardOnString();
+                    if (numberString == GameBoard.GAME_OVER && !reStartGame) {
+                        //after destroy figure
                         callGameOver();
+                    }
+                    else {
+                        //recalculate counter and speed
+                        score.setCounter(numberString);
+                        recalculateSpeed();
+                    }
                 }
             }
             //if game over, game reset after button reset
@@ -108,5 +119,10 @@ public class RunGame implements Runnable {
         //reset button start
         panelMenu.resetStart();
         gameOver = true;
+        gameSpeed = START_SPEED;
+    }
+
+    private void recalculateSpeed(){
+
     }
 }

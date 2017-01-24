@@ -23,14 +23,8 @@ public class MyKeyEventDispatcher implements KeyEventDispatcher{
                 left = true;
         }
         if (KeyStroke.getKeyStrokeForEvent(e).getKeyEventType() == 402){
-//            if(e.getKeyCode() == e.VK_W || e.getKeyCode() == e.VK_UP)
-//                up = false;
             if(e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN)
                 down = false;
-//            if(e.getKeyCode() == e.VK_D || e.getKeyCode() == e.VK_RIGHT)
-//                right = false;
-//            if(e.getKeyCode() == e.VK_A || e.getKeyCode() == e.VK_LEFT)
-//                left = false;
         }
         return false;
     }
