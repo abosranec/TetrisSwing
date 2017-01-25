@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainFrame extends JFrame {
-    private Image imageIcon = new ImageIcon("image\\cat.jpg").getImage();
+    private Image imageIcon = new ImageIcon("image\\icon2.jpg").getImage();
     private GameBoard gameBoard;
     private JPanel panelGameSetting;
     private Score score;
@@ -16,7 +16,7 @@ public class MainFrame extends JFrame {
     private int indent = 10;
 
     private void create(){
-        setTitle("TETRIS");
+        setTitle("ТЕТРИС");
         setSize(width, height);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setCenterPosition();
@@ -44,7 +44,7 @@ public class MainFrame extends JFrame {
         //settings
         panelGameSetting = new JPanel(null);
         panelGameSetting.setBounds((width*2/3), indent, (width/3) - indent - 5, height - indent*2 - 30);
-        panelGameSetting.setBackground(new Color(100,0,100));
+        panelGameSetting.setBackground(new Color(120,0,120));
         panelGameSetting.setBorder(BorderFactory.createRaisedBevelBorder());
         int widthSetting = panelGameSetting.getWidth() - indent*2;
         int heightSetting = (panelGameSetting.getHeight() - indent*5)/12;
@@ -61,7 +61,7 @@ public class MainFrame extends JFrame {
 
         //settingsBonus
         panelBonus = new PanelBonus();
-        panelBonus.setBounds(indent ,- indent + indent*3 + heightSetting*4, widthSetting, heightSetting * 5);
+        panelBonus.setBounds(indent ,- indent + indent*3 + heightSetting*4, widthSetting, heightSetting * 5 + indent);
         panelGameSetting.add(panelBonus);
 
         //settings.Menu
@@ -92,44 +92,13 @@ public class MainFrame extends JFrame {
     public PanelMenu getPanelMenu() {
         return panelMenu;
     }
+
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        Image img = new ImageIcon("image\\fon7.jpg").getImage();
+        g.drawImage(img, 0, 0, getWidth(),getHeight(), null);
+        gameBoard.repaint();
+        panelGameSetting.repaint();
+    }
 }
-
-
-
-
-
-
-
-//public class MainFrame extends JFrame {
-//    private Image img;
-//    private JPanel jp;
-//    private JLabel jl;
-//    private void init(){
-//        img = new ImageIcon("image\\cat.jpg").getImage();
-//    }
-//    public MainFrame() {
-//        init();
-//        setLayout(null);
-//
-//
-//        jp = new JPanel(){
-//            @Override
-//            public void paint(Graphics g) {
-//                super.paint(g);
-//                Image img = new ImageIcon("src\\image\\cat.jpg").getImage();
-//                g.drawImage(img, 0, 0,getWidth(),getHeight(), null);
-//            }
-//        };
-//
-//        add(new JPanel());
-//        jl = new JLabel(new ImageIcon("image\\cat.jpg"));
-//        add(jl);
-//    }
-//
-//    @Override
-//    public void paint(Graphics g) {
-//        super.paint(g);
-//        Image img = new ImageIcon("image\\cat.jpg").getImage();
-//        g.drawImage(img, 0, 0,getWidth(),getHeight(), null);
-//    }
-//}

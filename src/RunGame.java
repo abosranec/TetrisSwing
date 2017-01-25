@@ -5,7 +5,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class RunGame implements Runnable {
-    private MainFrame mainFrame;
     private GameBoard gameBoard;
     private PanelMenu panelMenu;
     private PanelNextFigure panelNextFigure;
@@ -22,7 +21,6 @@ public class RunGame implements Runnable {
     private Figure currentFigure;
     private boolean useNextFigure = false;
     public RunGame(MainFrame mainFrame) {
-        this.mainFrame = mainFrame;
         gameBoard = mainFrame.getGameBoard();
         panelMenu = mainFrame.getPanelMenu();
         score = mainFrame.getScore();
@@ -77,7 +75,6 @@ public class RunGame implements Runnable {
                     else {
                         //recalculate counter and speed
                         score.setCounter(numberString);
-                        //recalculateSpeed();
                     }
                 }
             }
@@ -157,7 +154,6 @@ public class RunGame implements Runnable {
                 //update level on score
                 score.setLevel(currentLevel);
             }
-            System.out.println(gameSpeed);
             return System.currentTimeMillis();
         }
         else return time;

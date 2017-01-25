@@ -17,7 +17,6 @@ public class Score extends JLabel {
         setBorder(BorderFactory.createRaisedBevelBorder());
         //update label
         updateValue();
-
         //font
         f = new Font(Font.SERIF, Font.PLAIN, 26);
         setFont(f);
