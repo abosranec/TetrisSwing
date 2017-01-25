@@ -12,8 +12,12 @@ public class RunGame implements Runnable {
     private MyKeyEventDispatcher myKeyEventDispatcher;
     private int gameSpeed;
     public static final int START_SPEED = 900;
+    public static final int MIN_SPEED = 100;
+    public static final int TIME_LEVEL_SPEED = 9000;
+    public static final int NUMBER_LEVEL = 20;
     private boolean gameOver = true;
-    private boolean reStartGame = false;
+    long timeSpeed = System.currentTimeMillis();
+    private int currentLevel = 0;
     public RunGame(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         gameBoard = mainFrame.getGameBoard();
@@ -31,9 +35,12 @@ public class RunGame implements Runnable {
             //start new game
             System.out.print("");
             if (panelMenu.isStart()) {
+                T:
                 while (gameOver) {
                     // for game speed
                     long currentTime = System.currentTimeMillis();
+                    //recalculate speed and level
+                    timeSpeed = recalculateSpeed(timeSpeed);
                     //select random figure
                     Figure currentFigure = Figure.randomFigure(gameBoard.getGridLayout());
                     gameBoard.newCurrentFigure(currentFigure);
@@ -52,19 +59,19 @@ public class RunGame implements Runnable {
                         //check restart game
                         if(panelMenu.isRestart()){
                             restartGame();
-                            break;
+                            break T;
                         }
                     }
                     //check board on full string
                     int numberString = gameBoard.checkBoardOnString();
-                    if (numberString == GameBoard.GAME_OVER && !reStartGame) {
+                    if (numberString == GameBoard.GAME_OVER) {
                         //after destroy figure
                         callGameOver();
                     }
                     else {
                         //recalculate counter and speed
                         score.setCounter(numberString);
-                        recalculateSpeed();
+                        //recalculateSpeed();
                     }
                 }
             }
@@ -114,15 +121,35 @@ public class RunGame implements Runnable {
         //destroy game board
         gameBoard.resetGridLayout();
         //reset button restart
-        reStartGame = false;
         panelMenu.resetRestart();
         //reset button start
         panelMenu.resetStart();
         gameOver = true;
+        //reset level and speed
+        score.resetValue();
         gameSpeed = START_SPEED;
+        timeSpeed = System.currentTimeMillis();
+        currentLevel = 0;
     }
 
-    private void recalculateSpeed(){
-
+    private long recalculateSpeed(long time){
+        if (score.getNumberAddSpeed() > 0){
+            currentLevel-= score.getNumberAddSpeed();
+            gameSpeed += (score.getNumberAddSpeed()) * (START_SPEED - MIN_SPEED) / NUMBER_LEVEL;
+            score.resetNumberAddSpeed(currentLevel);
+        }
+        //if time for the next level come
+        if ((System.currentTimeMillis() - time) > TIME_LEVEL_SPEED){
+            if (currentLevel < NUMBER_LEVEL) {
+                currentLevel++;
+                //recalculate speed
+                gameSpeed = START_SPEED - (currentLevel) * (START_SPEED - MIN_SPEED) / NUMBER_LEVEL;
+                //update level on score
+                score.setLevel(currentLevel);
+            }
+            System.out.println(gameSpeed);
+            return System.currentTimeMillis();
+        }
+        else return time;
     }
 }
