@@ -8,6 +8,7 @@ public class RunGame implements Runnable {
     private MainFrame mainFrame;
     private GameBoard gameBoard;
     private PanelMenu panelMenu;
+    private PanelNextFigure panelNextFigure;
     private Score score;
     private MyKeyEventDispatcher myKeyEventDispatcher;
     private int gameSpeed;
@@ -18,15 +19,19 @@ public class RunGame implements Runnable {
     private boolean gameOver = true;
     long timeSpeed = System.currentTimeMillis();
     private int currentLevel = 0;
+    private Figure currentFigure;
+    private boolean useNextFigure = false;
     public RunGame(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         gameBoard = mainFrame.getGameBoard();
         panelMenu = mainFrame.getPanelMenu();
         score = mainFrame.getScore();
+        panelNextFigure = mainFrame.getPanelNextFigure();
         //for global keyListener
         myKeyEventDispatcher = new MyKeyEventDispatcher();
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(myKeyEventDispatcher);
         gameSpeed = START_SPEED;
+        //currentFigure = Figure.randomFigure(gameBoard.getGridLayout());
     }
 
     @Override
@@ -42,7 +47,8 @@ public class RunGame implements Runnable {
                     //recalculate speed and level
                     timeSpeed = recalculateSpeed(timeSpeed);
                     //select random figure
-                    Figure currentFigure = Figure.randomFigure(gameBoard.getGridLayout());
+                    currentFigure = Figure.randomFigure(gameBoard.getGridLayout());
+                    panelNextFigure.newCurrentFigure(currentFigure);
                     gameBoard.newCurrentFigure(currentFigure);
                     //use new figure
                     while (currentFigure.isStatus()) {
@@ -130,6 +136,9 @@ public class RunGame implements Runnable {
         gameSpeed = START_SPEED;
         timeSpeed = System.currentTimeMillis();
         currentLevel = 0;
+        //reset next figure
+        panelNextFigure.resetGridLayout();
+        useNextFigure = false;
     }
 
     private long recalculateSpeed(long time){

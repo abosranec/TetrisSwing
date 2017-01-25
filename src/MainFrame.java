@@ -56,13 +56,12 @@ public class MainFrame extends JFrame {
         panelGameSetting.add(score);
 
         //settings.nextFigure
-        panelNextFigure = new PanelNextFigure();
-        panelNextFigure.setBounds(indent ,indent*2 + heightSetting, widthSetting, heightSetting * 3);
+        panelNextFigure = new PanelNextFigure(indent ,indent*2 + heightSetting, widthSetting, heightSetting * 3 - indent);
         panelGameSetting.add(panelNextFigure);
 
         //settingsBonus
         panelBonus = new PanelBonus();
-        panelBonus.setBounds(indent ,indent*3 + heightSetting*4, widthSetting, heightSetting * 5);
+        panelBonus.setBounds(indent ,- indent + indent*3 + heightSetting*4, widthSetting, heightSetting * 5);
         panelGameSetting.add(panelBonus);
 
         //settings.Menu
