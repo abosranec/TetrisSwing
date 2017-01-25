@@ -39,7 +39,7 @@ public class Score extends JLabel {
     public void setLevel(int level){
         //recalculate level
         this.level = level;
-        setForeground(new Color(120,0,0));
+        setForeground(new Color(180,0,0));
         //update label
         updateValue();
     }
@@ -70,7 +70,7 @@ public class Score extends JLabel {
 
     public void resetNumberAddSpeed(int level) {
         numberAddSpeed = 0;
-        setForeground(new Color(0,120,0));
+        setForeground(new Color(0,140,0));
         this.level = level;
         //update label
         updateValue();

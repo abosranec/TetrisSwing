@@ -31,7 +31,7 @@ public class RunGame implements Runnable {
         myKeyEventDispatcher = new MyKeyEventDispatcher();
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(myKeyEventDispatcher);
         gameSpeed = START_SPEED;
-        //currentFigure = Figure.randomFigure(gameBoard.getGridLayout());
+        currentFigure = Figure.randomFigure(gameBoard.getGridLayout());
     }
 
     @Override
@@ -47,11 +47,11 @@ public class RunGame implements Runnable {
                     //recalculate speed and level
                     timeSpeed = recalculateSpeed(timeSpeed);
                     //select random figure
+                    gameBoard.newCurrentFigure(currentFigure);
                     currentFigure = Figure.randomFigure(gameBoard.getGridLayout());
                     panelNextFigure.newCurrentFigure(currentFigure);
-                    gameBoard.newCurrentFigure(currentFigure);
                     //use new figure
-                    while (currentFigure.isStatus()) {
+                    while (gameBoard.getCurrentFigure().isStatus()) {
                         //if game start, listen the moving buttons
                         listenButtonMoving(panelMenu.isStart());
                         //simple move down

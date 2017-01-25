@@ -127,4 +127,8 @@ public class GameBoard extends JPanel {
             }
         }
     }
+
+    public Figure getCurrentFigure() {
+        return currentFigure;
+    }
 }
