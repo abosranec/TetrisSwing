@@ -19,7 +19,7 @@ public class Score extends JLabel {
         updateValue();
 
         //font
-        f = new Font(Font.SERIF, Font.PLAIN, 24);
+        f = new Font(Font.SERIF, Font.PLAIN, 26);
         setFont(f);
         setForeground(new Color(255,255,255));
     }

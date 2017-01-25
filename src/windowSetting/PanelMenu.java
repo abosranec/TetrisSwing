@@ -17,6 +17,7 @@ public class PanelMenu extends JPanel {
     public PanelMenu() {
         super(new GridBagLayout());
         setBorder(BorderFactory.createRaisedBevelBorder());
+        setBackground(new Color(200,200,200));
         init();
     }
     private void init(){

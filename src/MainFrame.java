@@ -42,43 +42,33 @@ public class MainFrame extends JFrame {
         add(gameBoard);
 
         //settings
-        panelGameSetting = new JPanel(new GridBagLayout());
+        panelGameSetting = new JPanel(null);
         panelGameSetting.setBounds((width*2/3), indent, (width/3) - indent - 5, height - indent*2 - 30);
         panelGameSetting.setBackground(new Color(100,0,100));
         panelGameSetting.setBorder(BorderFactory.createRaisedBevelBorder());
+        int widthSetting = panelGameSetting.getWidth() - indent*2;
+        int heightSetting = (panelGameSetting.getHeight() - indent*5)/12;
         add(panelGameSetting);
 
         //settings.score
         score = new Score();
-        panelGameSetting.add(score, new GridBagConstraints(
-                0, 0, 1, 1, 0, 1,
-                GridBagConstraints.CENTER,
-                GridBagConstraints.HORIZONTAL,
-                new Insets(-10, 5, -10, 5), 0, 0 ));
+        score.setBounds(indent ,indent, widthSetting, heightSetting);
+        panelGameSetting.add(score);
 
         //settings.nextFigure
         panelNextFigure = new PanelNextFigure();
-        panelGameSetting.add(panelNextFigure, new GridBagConstraints(
-                0, 1, 1, 3, 0, 3,
-                GridBagConstraints.CENTER,
-                GridBagConstraints.VERTICAL,
-                new Insets(0, 5, 5, 5), 135, 0 ));
+        panelNextFigure.setBounds(indent ,indent*2 + heightSetting, widthSetting, heightSetting * 3);
+        panelGameSetting.add(panelNextFigure);
 
         //settingsBonus
         panelBonus = new PanelBonus();
-        panelGameSetting.add(panelBonus, new GridBagConstraints(
-                0, 4, 1, 5, 0, 5,
-                GridBagConstraints.CENTER,
-                GridBagConstraints.VERTICAL,
-                new Insets(5, 5, 5, 5), 132, 0 ));
+        panelBonus.setBounds(indent ,indent*3 + heightSetting*4, widthSetting, heightSetting * 5);
+        panelGameSetting.add(panelBonus);
 
         //settings.Menu
         panelMenu = new PanelMenu();
-        panelGameSetting.add(panelMenu, new GridBagConstraints(
-                0, 9, 1, 3, 0, 3,
-                GridBagConstraints.CENTER,
-                GridBagConstraints.VERTICAL,
-                new Insets(5, 5, 10, 5), 20, 0 ));
+        panelMenu.setBounds(indent ,indent*4 + heightSetting*9, widthSetting, heightSetting * 3);
+        panelGameSetting.add(panelMenu);
 
         //finish to create window
         setVisible(true);

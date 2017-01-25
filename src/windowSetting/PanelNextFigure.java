@@ -7,17 +7,10 @@ public class PanelNextFigure extends JPanel {
     public PanelNextFigure() {
         //super(new GridBagLayout());
         setLayout(null);
-        //setBounds(0, 0, 200, 300);
+        setBackground(new Color(200,200,200));
         setBorder(BorderFactory.createRaisedBevelBorder());
-        System.out.println(getX());
-        System.out.println(getWidth());
-        System.out.println(getHeight());
         Button b = new Button();
-        b.setBounds(0 ,0, 50, 50);
-        Button b2 = new Button();
-        b2.setBounds(55 ,0, 50, 50);
-        repaint();
+        b.setBounds(0 ,10, 100, 100);
         add(b);
-        add(b2);
     }
 }
