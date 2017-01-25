@@ -46,8 +46,8 @@ public class PanelNextFigure extends JPanel {
         for (int i = 0; i < currentFigure.getCells().length; i++) {
             for (int j = 0; j < (currentFigure.getCells())[i].length; j++) {
                 if (currentFigure.getCells()[i][j].isVisible()) {
-                    gridLayout[i][j].setBackground((currentFigure.getCells()[i][j]).getBackground());
-                    gridLayout[i][j].setVisible(visible);
+                    gridLayout[j][i].setBackground((currentFigure.getCells()[i][j]).getBackground());
+                    gridLayout[j][i].setVisible(visible);
                 }
             }
         }

@@ -12,7 +12,7 @@ public class RunGame implements Runnable {
     private MyKeyEventDispatcher myKeyEventDispatcher;
     private int gameSpeed;
     public static final int START_SPEED = 900;
-    public static final int MIN_SPEED = 100;
+    public static final int MIN_SPEED = 150;
     public static final int TIME_LEVEL_SPEED = 9000;
     public static final int NUMBER_LEVEL = 20;
     private boolean gameOver = true;

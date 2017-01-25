@@ -7,7 +7,7 @@ public class Score extends JLabel {
     private Font f;
     private int level = 0;
     private int counter = 0;
-    public static final int VALUE_ADD_SPEED = 500;
+    public static final int VALUE_ADD_SPEED = 300;
     private int numberAddSpeed = 0;
     public Score() {
         //settings.score
