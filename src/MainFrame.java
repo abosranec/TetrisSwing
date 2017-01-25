@@ -62,7 +62,7 @@ public class MainFrame extends JFrame {
                 0, 1, 1, 3, 0, 3,
                 GridBagConstraints.CENTER,
                 GridBagConstraints.VERTICAL,
-                new Insets(0, 5, 5, 5), 20, 0 ));
+                new Insets(0, 5, 5, 5), 135, 0 ));
 
         //settingsBonus
         panelBonus = new PanelBonus();
@@ -70,7 +70,7 @@ public class MainFrame extends JFrame {
                 0, 4, 1, 5, 0, 5,
                 GridBagConstraints.CENTER,
                 GridBagConstraints.VERTICAL,
-                new Insets(5, 5, 5, 5), 20, 0 ));
+                new Insets(5, 5, 5, 5), 132, 0 ));
 
         //settings.Menu
         panelMenu = new PanelMenu();

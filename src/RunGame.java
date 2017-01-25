@@ -133,6 +133,7 @@ public class RunGame implements Runnable {
     }
 
     private long recalculateSpeed(long time){
+        //check how many count and decrease level
         if (score.getNumberAddSpeed() > 0){
             currentLevel-= score.getNumberAddSpeed();
             gameSpeed += (score.getNumberAddSpeed()) * (START_SPEED - MIN_SPEED) / NUMBER_LEVEL;

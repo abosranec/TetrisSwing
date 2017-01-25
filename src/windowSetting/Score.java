@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class Score extends JLabel {
     private Font f;
-    private int level = 1;
+    private int level = 0;
     private int counter = 0;
     public static final int VALUE_ADD_SPEED = 500;
     private int numberAddSpeed = 0;
@@ -13,7 +13,7 @@ public class Score extends JLabel {
         //settings.score
         super("0", JLabel.CENTER);
         setOpaque(true);
-        setBackground(new Color(100,150,200));
+        setBackground(new Color(150,150,200));
         setBorder(BorderFactory.createRaisedBevelBorder());
         //update label
         updateValue();
@@ -45,7 +45,7 @@ public class Score extends JLabel {
     }
 
     public void resetValue(){
-        level = 1;
+        level = 0;
         counter = 0;
         setForeground(new Color(255,255,255));
         //update label
